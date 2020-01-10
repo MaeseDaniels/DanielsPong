@@ -57,7 +57,7 @@ let ball = {
 
 
 let raquetSpeed = 10;
-let ballSpeed = 8;
+let ballSpeed = 6;
 let maxTop = 0;
 let maxBottom = 550;
 let isBallMoving = false;
