@@ -2,6 +2,9 @@ let startButton = document.getElementById("start");
 let initButton = document.getElementById("init");
 let raquetOnePoints = document.getElementById("raquetOnePoints");
 let raquetTwoPoints = document.getElementById("raquetTwoPoints");
+let auds = document.getElementsByClassName("aud");
+let audGoal = document.getElementsByClassName("audGoal");
+
 const initialBallValues = {
   width: 10,
   height: 10,
@@ -45,6 +48,7 @@ let ball = {
   moveX: '',
   moveY: ''
 }
+
 
 
 let raquetSpeed = 5;
@@ -103,7 +107,7 @@ window.onkeydown = (e) => {
 }
 
 window.onkeyup = (e) => {
-  // console.log("up",e.key);
+  console.log("up",e.key);
   if(e.key == 'w' && raquetOne.move == 'up') {
     raquetOne.move = '';
   }
@@ -116,10 +120,13 @@ window.onkeyup = (e) => {
   if(e.key == 'ArrowDown' && raquetTwo.move == 'down') {
     raquetTwo.move = '';
   }
+  if(e.key==' '){
+    isBallMoving = true;
+  }
 }
 
 function moveBall() {
-  let dirX, dirY, ranX, ranY;
+  let dirX, dirY;
   
   if(ball.moveX.length == 0 && ball.moveY.length == 0){
     dirY = ['up', 'down'];
@@ -135,10 +142,12 @@ function moveBall() {
       if(ball.posY >= raquetOne.posY && ball.posY <= raquetOne.posY+24){
         ball.moveX = 'right';
         ball.moveY = 'up';
+        auds[Math.floor(Math.random()*7)].play();
       }
       if(ball.posY >= raquetOne.posY+25 && ball.posY <= raquetOne.posY+50){
         ball.moveX = 'right';
         ball.moveY = 'down';
+        auds[Math.floor(Math.random()*7)].play();
       }
     }
     
@@ -154,10 +163,12 @@ function moveBall() {
       if(ball.posY >= raquetTwo.posY && ball.posY <= raquetTwo.posY+24){
         ball.moveX = 'left';
         ball.moveY = 'up';
+        auds[Math.floor(Math.random()*7)].play();
       }
       if(ball.posY >= raquetTwo.posY+25 && ball.posY <= raquetTwo.posY+50){
         ball.moveX = 'left';
         ball.moveY = 'down';
+        auds[Math.floor(Math.random()*7)].play();
       }
     }
 
@@ -216,6 +227,7 @@ function goalRaquet(raquet) {
   raquetOnePoints.innerText = raquetOne.points;
   raquetTwoPoints.innerText = raquetTwo.points;
 
+  audGoal[0].play();
 }
 
 startButton.onclick = ()=>{isBallMoving = true;}
