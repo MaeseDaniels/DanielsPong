@@ -2,7 +2,8 @@ let startButton = document.getElementById("start");
 let initButton = document.getElementById("init");
 let raquetOnePoints = document.getElementById("raquetOnePoints");
 let raquetTwoPoints = document.getElementById("raquetTwoPoints");
-let auds = document.getElementsByClassName("aud");
+let audsRaquetOne = document.getElementsByClassName("aud");
+let audsRaquetTwo = document.getElementsByClassName("aud2");
 let audGoal = document.getElementsByClassName("audGoal");
 
 const initialBallValues = {
@@ -51,8 +52,8 @@ let ball = {
 
 
 
-let raquetSpeed = 5;
-let ballSpeed = 5;
+let raquetSpeed = 10;
+let ballSpeed = 8;
 let maxTop = 0;
 let maxBottom = 550;
 let isBallMoving = false;
@@ -142,12 +143,12 @@ function moveBall() {
       if(ball.posY >= raquetOne.posY && ball.posY <= raquetOne.posY+24){
         ball.moveX = 'right';
         ball.moveY = 'up';
-        auds[Math.floor(Math.random()*7)].play();
+        audsRaquetOne[Math.floor(Math.random()*audsRaquetOne.length)].play();
       }
       if(ball.posY >= raquetOne.posY+25 && ball.posY <= raquetOne.posY+50){
         ball.moveX = 'right';
         ball.moveY = 'down';
-        auds[Math.floor(Math.random()*7)].play();
+        audsRaquetOne[Math.floor(Math.random()*audsRaquetOne.length)].play();
       }
     }
     
@@ -163,12 +164,12 @@ function moveBall() {
       if(ball.posY >= raquetTwo.posY && ball.posY <= raquetTwo.posY+24){
         ball.moveX = 'left';
         ball.moveY = 'up';
-        auds[Math.floor(Math.random()*7)].play();
+        audsRaquetTwo[Math.floor(Math.random()*audsRaquetTwo.length)].play();
       }
       if(ball.posY >= raquetTwo.posY+25 && ball.posY <= raquetTwo.posY+50){
         ball.moveX = 'left';
         ball.moveY = 'down';
-        auds[Math.floor(Math.random()*7)].play();
+        audsRaquetTwo[Math.floor(Math.random()*audsRaquetTwo.length)].play();
       }
     }
 
