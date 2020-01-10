@@ -1,0 +1,24 @@
+#canvas {
+  border:1px solid black;
+  margin:0 auto;
+  display: flex;
+}
+
+.infoGame {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttonPanel {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.buttonPanel button{
+  width: 45%;
+}
+.title {
+  text-align: center;
+}
