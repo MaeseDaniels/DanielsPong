@@ -4,6 +4,10 @@ let raquetOnePoints = document.getElementById("raquetOnePoints");
 let raquetTwoPoints = document.getElementById("raquetTwoPoints");
 let audsRaquetOne = document.getElementsByClassName("aud");
 let audsRaquetTwo = document.getElementsByClassName("aud2");
+let audPito = document.getElementsByClassName("audPito");
+let audPi = document.getElementsByClassName("audPi");
+let audHit = document.getElementsByClassName("audHit");
+
 let audGoal = document.getElementsByClassName("audGoal");
 
 const initialBallValues = {
@@ -108,7 +112,7 @@ window.onkeydown = (e) => {
 }
 
 window.onkeyup = (e) => {
-  console.log("up",e.key);
+  // console.log("up",e.key);
   if(e.key == 'w' && raquetOne.move == 'up') {
     raquetOne.move = '';
   }
@@ -122,7 +126,7 @@ window.onkeyup = (e) => {
     raquetTwo.move = '';
   }
   if(e.key==' '){
-    isBallMoving = true;
+    initBall()
   }
 }
 
@@ -143,12 +147,16 @@ function moveBall() {
       if(ball.posY >= raquetOne.posY && ball.posY <= raquetOne.posY+24){
         ball.moveX = 'right';
         ball.moveY = 'up';
-        audsRaquetOne[Math.floor(Math.random()*audsRaquetOne.length)].play();
+        let ran = Math.floor(Math.random()*audsRaquetOne.length);
+        audsRaquetOne[ran].play();
+        audHit[0].play();
       }
       if(ball.posY >= raquetOne.posY+25 && ball.posY <= raquetOne.posY+50){
         ball.moveX = 'right';
         ball.moveY = 'down';
-        audsRaquetOne[Math.floor(Math.random()*audsRaquetOne.length)].play();
+        let ran = Math.floor(Math.random()*audsRaquetOne.length);
+        audsRaquetOne[ran].play();
+        audHit[0].play();
       }
     }
     
@@ -164,12 +172,18 @@ function moveBall() {
       if(ball.posY >= raquetTwo.posY && ball.posY <= raquetTwo.posY+24){
         ball.moveX = 'left';
         ball.moveY = 'up';
-        audsRaquetTwo[Math.floor(Math.random()*audsRaquetTwo.length)].play();
+        let ran = Math.floor(Math.random()*audsRaquetTwo.length);
+        // console.log(ran)
+        audsRaquetTwo[ran].play();
+        audHit[0].play();
       }
       if(ball.posY >= raquetTwo.posY+25 && ball.posY <= raquetTwo.posY+50){
         ball.moveX = 'left';
         ball.moveY = 'down';
-        audsRaquetTwo[Math.floor(Math.random()*audsRaquetTwo.length)].play();
+        let ran = Math.floor(Math.random()*audsRaquetTwo.length);
+        audsRaquetTwo[ran].play();
+        audHit[0].play();
+        // console.log(ran)
       }
     }
 
@@ -181,12 +195,16 @@ function moveBall() {
     ball.posY -= ballSpeed;
     if(ball.posY <= 5) {
       ball.moveY = 'down';
+      let ran = Math.floor(Math.random()*audPi.length);
+      audPi[ran].play();
     }
   }
   if(ball.moveY == 'down') {
     ball.posY += ballSpeed;
     if(ball.posY >= 595) {
       ball.moveY = 'up';
+      let ran = Math.floor(Math.random()*audPi.length);
+      audPi[ran].play();
     }
     
   }
@@ -231,8 +249,13 @@ function goalRaquet(raquet) {
   audGoal[0].play();
 }
 
-startButton.onclick = ()=>{isBallMoving = true;}
+startButton.onclick = ()=>{initBall()}
 
 initButton.onclick = () => {
   initGame();
+}
+
+function initBall() {
+  isBallMoving = true;
+  audPito[0].play();
 }
